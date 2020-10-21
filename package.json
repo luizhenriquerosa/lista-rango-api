@@ -1,0 +1,13 @@
+{
+  "name": "lista-rango-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Luiz Henrique Rosa <rosaluizhenrique@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.10.9",
+    "multer": "^1.4.2"
+  }
+}
