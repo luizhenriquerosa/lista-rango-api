@@ -9,7 +9,10 @@ class Server {
 
   loadMiddlewares() {
     this.expressServer.use(express.json());
-    this.expressServer.use("storage", express.static("../../storage"));
+    this.expressServer.use(
+      "/storage",
+      express.static(`${__dirname}/../storage`)
+    );
     this.expressServer.use(cors());
   }
 
