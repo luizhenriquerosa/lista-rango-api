@@ -9,7 +9,7 @@ const Product = new Schema(
       type: String,
     },
     categories: {
-      type: [String],
+      type: [],
       required: true,
     },
     sales: {

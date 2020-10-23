@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 import ErrorMessages from "../../../config/ErrorMessages";
 import validMinTimeDifference from "../../../utils/validMinTimeDifference";
+import fs from "fs";
 
 export default async (req, res, next) => {
   try {
@@ -13,7 +14,17 @@ export default async (req, res, next) => {
         try {
           return JSON.parse(req.body.sales);
         } catch {
-          return [];
+          return [{ formatInvalid: "" }];
+        }
+      }).call();
+    }
+
+    if (req.body.categories && typeof req.body.categories === "string") {
+      req.body.categories = (() => {
+        try {
+          return JSON.parse(req.body.categories);
+        } catch {
+          return [{ formatInvalid: "" }];
         }
       }).call();
     }

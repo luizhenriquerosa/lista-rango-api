@@ -9,6 +9,7 @@ import RestaurantUpdate from "./app/middlewares/validators/RestaurantUpdate";
 import ProductCreate from "./app/middlewares/validators/ProductCreate";
 import ProductUpdate from "./app/middlewares/validators/ProductUpdate";
 import PhotoController from "./app/controllers/PhotoController";
+import FilterController from "./app/controllers/FilterController";
 
 const router = Router();
 const uploadPhotoRestaurant = multer(configStorage.restaurant);
@@ -92,5 +93,20 @@ router.delete(
   PhotoController.deletePhotoProduct
 );
 router.delete("/products/:_id", CheckIsValidObjectId, ProductController.delete);
+
+// Filters
+
+router.get("/promotions", FilterController.getAllActivePromotions);
+router.get(
+  "/restaurants/:_id/promotions",
+  CheckIsValidObjectId,
+  FilterController.getAllActivePromotions
+);
+router.get("/categories", FilterController.getAllCategories);
+router.get(
+  "/restaurants/:_id/categories",
+  CheckIsValidObjectId,
+  FilterController.getAllCategories
+);
 
 export { router };
