@@ -27,6 +27,11 @@ router.post(
   RestaurantCreate,
   RestaurantController.store
 );
+router.get(
+  "/restaurants/:_id/photo",
+  CheckIsValidObjectId,
+  PhotoController.getPhotoRestaurant
+);
 router.put(
   "/restaurants/:_id",
   CheckIsValidObjectId,
@@ -40,6 +45,11 @@ router.put(
   uploadPhotoRestaurant.single("photo"),
   RestaurantUpdate,
   PhotoController.updatePhotoRestaurant
+);
+router.delete(
+  "/restaurants/:_id/photo",
+  CheckIsValidObjectId,
+  PhotoController.deletePhotoRestaurant
 );
 router.delete(
   "/restaurants/:_id",
@@ -64,12 +74,22 @@ router.put(
   ProductUpdate,
   ProductController.update
 );
+router.get(
+  "/products/:_id/photo",
+  CheckIsValidObjectId,
+  PhotoController.getPhotoProduct
+);
 router.put(
   "/products/:_id/photo",
   CheckIsValidObjectId,
   uploadPhotoRestaurant.single("photo"),
   RestaurantUpdate,
   PhotoController.updatePhotoProduct
+);
+router.delete(
+  "/products/:_id/photo",
+  CheckIsValidObjectId,
+  PhotoController.deletePhotoProduct
 );
 router.delete("/products/:_id", CheckIsValidObjectId, ProductController.delete);
 
