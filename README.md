@@ -190,6 +190,6 @@ Use PM2 para gerenciar o processo. https://pm2.keymetrics.io/docs/usage/quick-st
 
 - return status code 204, delete product and photo
 
-## Lincença
+## Licença
 
 MIT
