@@ -52,7 +52,11 @@ export default async (req, res, next) => {
           Yup.object({
             weekday: Yup.string()
               .required(ErrorMessages.FIELD_REQUIRED)
-              .typeError(ErrorMessages.TYPE_ERROR_MUST_BE_STRING),
+              .typeError(ErrorMessages.TYPE_ERROR_MUST_BE_STRING)
+              .matches(
+                /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)/,
+                ErrorMessages.FORMAT_ERROR_WEEKDAY
+              ),
             schedule: Yup.object({
               start: Yup.string()
                 .required(ErrorMessages.FIELD_REQUIRED)

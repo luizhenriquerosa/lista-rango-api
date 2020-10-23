@@ -22,9 +22,13 @@ export default async (req, res, next) => {
     if (req.body.categories && typeof req.body.categories === "string") {
       req.body.categories = (() => {
         try {
-          return JSON.parse(req.body.categories);
+          return JSON.parse(req.body.categories).req.body.categories.map((c) =>
+            c.length > 1
+              ? c.charAt(0).toUpperCase() + c.slice(1).toLowerCase()
+              : c
+          );
         } catch {
-          return [{ formatInvalid: "" }];
+          return null;
         }
       }).call();
     }
@@ -40,7 +44,11 @@ export default async (req, res, next) => {
           Yup.object({
             weekday: Yup.string()
               .required(ErrorMessages.FIELD_REQUIRED)
-              .typeError(ErrorMessages.TYPE_ERROR_MUST_BE_STRING),
+              .typeError(ErrorMessages.TYPE_ERROR_MUST_BE_STRING)
+              .matches(
+                /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)/,
+                ErrorMessages.FORMAT_ERROR_WEEKDAY
+              ),
             schedule: Yup.object({
               start: Yup.string()
                 .required(ErrorMessages.FIELD_REQUIRED)
