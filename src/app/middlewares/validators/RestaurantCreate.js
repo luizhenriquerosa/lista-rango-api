@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 import ErrorMessages from "../../../config/ErrorMessages";
 import fs from "fs";
-import checkTimeDifferenceInMinutes from "../../../utils/checkTimeDifferenceInMinutes";
+import validMinTimeDifference from "../../../utils/validMinTimeDifference";
 
 export default async (req, res, next) => {
   try {
@@ -74,7 +74,7 @@ export default async (req, res, next) => {
               .test(
                 "TIME_DIFFERENCE",
                 ErrorMessages.TIME_DIFFERENCE_MIN,
-                checkTimeDifferenceInMinutes
+                validMinTimeDifference
               ),
           })
         )
