@@ -13,12 +13,7 @@ const Restaurant = new Schema(
     adressObs: { type: String },
     openingHours: {
       _id: false,
-      type: [
-        {
-          weekday: String,
-          schedules: [{ _id: false, start: String, end: String }],
-        },
-      ],
+      type: [],
       required: true,
     },
     dirPhoto: {

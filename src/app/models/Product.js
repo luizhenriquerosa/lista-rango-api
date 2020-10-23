@@ -15,13 +15,7 @@ const Product = new Schema(
     },
     sales: {
       _id: false,
-      type: [
-        {
-          salePrice: Number,
-          weekday: String,
-          schedules: [{ _id: false, start: String, end: String }],
-        },
-      ],
+      type: [],
       required: false,
     },
   },
