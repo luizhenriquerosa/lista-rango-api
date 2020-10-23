@@ -3,12 +3,12 @@ import moment from "moment";
 
 class FilterController {
   async getAllActivePromotions(req, res) {
-    const { _idRestaurant } = req.params;
+    const { _id } = req.params;
 
-    const products = _idRestaurant
+    const products = _id
       ? await Product.find({
+          _idRestaurant: _id,
           $and: [
-            _idRestaurant,
             { $where: "this.sales.length > 0" },
             { $where: `this.sales.weekday = "${moment().format("dddd")}"` },
           ],
