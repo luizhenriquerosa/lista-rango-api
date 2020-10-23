@@ -39,4 +39,22 @@ router.delete(
   RestaurantController.delete
 );
 
+router.get("/products", ProductController.index);
+router.get("/products/:_id", CheckIsValidObjectId, ProductController.show);
+router.post(
+  "/products",
+  uploadPhotoProduct.single("photo"),
+  CheckIsValidObjectId,
+  ProductCreate,
+  ProductController.store
+);
+router.put(
+  "/products/:_id",
+  CheckIsValidObjectId,
+  uploadPhotoProduct.single("photo"),
+  ProductUpdate,
+  ProductController.update
+);
+router.delete("/products/:_id", CheckIsValidObjectId, ProductController.delete);
+
 export { router };
