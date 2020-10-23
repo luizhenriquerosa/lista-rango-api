@@ -68,9 +68,7 @@ export default async (req, res, next) => {
           })
         )
         .typeError(ErrorMessages.TYPE_ERROR_MUST_BE_ARRAY),
-      dirPhoto: Yup.string()
-        .required(ErrorMessages.FIELD_REQUIRED)
-        .typeError(ErrorMessages.TYPE_ERROR_MUST_BE_STRING),
+      dirPhoto: Yup.string().typeError(ErrorMessages.TYPE_ERROR_MUST_BE_STRING),
     });
 
     await schema.validate(req.body, { abortEarly: false });

@@ -7,7 +7,6 @@ const Product = new Schema(
     price: { type: Number, required: true },
     dirPhoto: {
       type: String,
-      required: true,
     },
     categories: {
       type: [String],
@@ -26,11 +25,12 @@ const Product = new Schema(
 );
 
 Product.virtual("urlPhoto").get(function () {
-  const path = this.dirPhoto.slice(
-    this.dirPhoto.indexOf("storage"),
-    this.dirPhoto.length
-  );
-  return `${process.env.API_EXTERNAL_URI}/${path}`;
+  return this.dirPhoto
+    ? `${process.env.API_EXTERNAL_URI}/${this.dirPhoto.slice(
+        this.dirPhoto.indexOf("storage"),
+        this.dirPhoto.length
+      )}`
+    : "";
 });
 
 Product.set("toJSON", {
