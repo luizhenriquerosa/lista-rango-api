@@ -22,6 +22,11 @@ router.get(
   CheckIsValidObjectId,
   RestaurantController.show
 );
+router.get(
+  "/restaurants/:_id/products",
+  CheckIsValidObjectId,
+  RestaurantController.products
+);
 router.post(
   "/restaurants",
   uploadPhotoRestaurant.single("photo"),
@@ -95,7 +100,6 @@ router.delete(
 router.delete("/products/:_id", CheckIsValidObjectId, ProductController.delete);
 
 // Filters
-
 router.get("/promotions", FilterController.getAllActivePromotions);
 router.get(
   "/restaurants/:_id/promotions",
