@@ -2,5 +2,5 @@
   "execMap": {
     "js": "node -r sucrase/register"
   },
-  "ignore": ["/storage/*"]
+  "ignore": ["/storage/*", "/dist/*"]
 }
