@@ -4,8 +4,30 @@ import fs from "fs";
 
 class RestaurantController {
   async index(req, res) {
-    const restaurants = await Restaurant.find();
-    return res.json({ restaurants });
+    const { orderBy = null, orderDirection = null } = req.query;
+    const page = Number(req.query.page || 0);
+    const limit = Number(req.query.limit || 0);
+    const skip = (page - 1) * limit;
+
+    const restaurants = await Restaurant.find().limit(limit).skip(skip).exec();
+
+    const count = Number(await Restaurant.countDocuments());
+    const totalPages = Math.ceil(count / limit);
+    const nextPage = page === totalPages ? page : page + 1;
+
+    return res.json(
+      page
+        ? {
+            totalPages: totalPages,
+            currentPage: page,
+            nextPage: nextPage,
+            totalResults: count,
+            restaurants,
+          }
+        : {
+            restaurants,
+          }
+    );
   }
 
   async show(req, res) {

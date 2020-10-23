@@ -4,8 +4,29 @@ import fs from "fs";
 
 class ProductController {
   async index(req, res) {
-    const products = await Product.find();
-    return res.json({ products });
+    const page = Number(req.query.page || 0);
+    const limit = Number(req.query.limit || 0);
+    const skip = (page - 1) * limit;
+
+    const products = await Product.find().limit(limit).skip(skip).exec();
+
+    const count = Number(await Product.countDocuments());
+    const totalPages = Math.ceil(count / limit);
+    const nextPage = page === totalPages ? page : page + 1;
+
+    return res.json(
+      page
+        ? {
+            totalPages: totalPages,
+            currentPage: page,
+            nextPage: nextPage,
+            totalResults: count,
+            products,
+          }
+        : {
+            products,
+          }
+    );
   }
 
   async show(req, res) {
