@@ -22,7 +22,7 @@ export default async (req, res, next) => {
     if (req.body.categories && typeof req.body.categories === "string") {
       req.body.categories = (() => {
         try {
-          return JSON.parse(req.body.categories).req.body.categories.map((c) =>
+          return JSON.parse(req.body.categories).map((c) =>
             c.length > 1
               ? c.charAt(0).toUpperCase() + c.slice(1).toLowerCase()
               : c
