@@ -12,7 +12,7 @@ API RESTful para gerenciamento de cardápios de restaurantes.
 
 ### Tecnologias
 
-- Desenvolvida em Node.js
+- Desenvolvido em Node.js
 - Utilização de imagem Docker MongoDB para armazanemanto dos cadastros de restaurantes e produtos
 - Express para servidor HTTP, Yup para validações, Mongoose como ODM, Multer para upload de fotos
 - Nodemon e Sucrase para transpilação do código
